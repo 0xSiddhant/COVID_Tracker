@@ -160,4 +160,11 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

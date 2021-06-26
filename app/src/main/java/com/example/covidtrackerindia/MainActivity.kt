@@ -3,6 +3,7 @@ package com.example.covidtrackerindia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
@@ -14,10 +15,17 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var stateAdaptor: StateAdaptor
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        list.addHeaderView(LayoutInflater.from(this).inflate(
+            R.layout.item_header,
+            list,
+            false
+        ))
         fetchResult()
     }
 
@@ -31,9 +39,15 @@ class MainActivity : AppCompatActivity() {
                 launch(Dispatchers.Main) {
                     /// First Item of data contains MetaData of the list
                     bindCombinedDate(data.statewise[0])
+                    bindStatwiseData(data.statewise.subList(1, data.statewise.size))
                 }
             }
         }
+    }
+
+    private fun bindStatwiseData(subList: List<StatewiseItem>) {
+        stateAdaptor = StateAdaptor(subList)
+        list.adapter = stateAdaptor
     }
 
     private fun bindCombinedDate(data : StatewiseItem) {
