@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 launch(Dispatchers.Main) {
                     /// First Item of data contains MetaData of the list
                     bindCombinedDate(data.statewise[0])
-                    bindStatwiseData(data.statewise.subList(1, data.statewise.size))
+                    bindStatwiseData(data.statewise.subList(0, data.statewise.size))
                 }
             }
         }

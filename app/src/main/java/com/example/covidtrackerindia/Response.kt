@@ -8,6 +8,7 @@ data class StatewiseItem(
 	val statenotes: String? = null,
 	val recovered: String? = null,
 	val deltadeaths: String? = null,
+	val deltaactive: String? = null,
 	val migratedother: String? = null,
 	val deltarecovered: String? = null,
 	val active: String? = null,
